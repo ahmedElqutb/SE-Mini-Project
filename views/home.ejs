@@ -1,0 +1,67 @@
+<%- include('header.ejs') %>
+
+    
+        <% if(typeof req != 'undefined'){ %>
+            <% if (typeof req.session.message != 'undefined'){ %>
+                <div class=".col-md-6 personal-info">
+                    <div class="alert alert-info alert-dismissable">
+                        <a class="panel-close close" data-dismiss="alert">×</a> 
+                        <i class="fa fa-coffee">!</i>
+                        <strong><%= req.session.message%><% delete req.session.message %></strong>
+                    </div>
+                </div>
+            <% } %>
+        <% } %>
+    
+
+    <div class="row">
+        
+
+        <div class=".col-md-6">
+            <ul class="list-group">
+                    <% for(var i=0; i<portfolios.length; i++){%>
+
+                        <div>
+                                                   
+                        </div>                    
+
+                <li class="list-group-item">
+                    <% if(typeof (portfolios[i].image.data) != 'undefined') { %>
+                        <div class="col-md-3">
+                            <div>
+                               <img class="avatar img-circle" src="data:image/png;base64, <%= (portfolios[i].image.data.toString('base64')) %>" alt="avatar" width=60 height=60/>
+                                        
+                            </div>
+                        </div>
+                    <% }else{ %>
+                        <div class="col-md-3">
+                            <div>
+                                <img src="//placehold.it/100" class="avatar img-circle" alt="avatar" width=60 height=60>                             
+                            </div>
+                        </div>
+                    <% } %> 
+                    <div>
+                        <a class="pull-left" href="/portfolio/<%= portfolios[i].id %>"><%= portfolios[i].name%></a>
+                        <p>&nbsp;</p>
+
+                            <pre align="left">  <%= portfolios[i].abstract %></pre>
+                    </div>
+                </li>
+
+                    <% } %>
+            </ul>
+
+        </div>
+    </div>
+    <table style="border-collapse:collapse;text-align:left;margin:30px auto 30px" id="nav" role="presentation">
+        <tbody>
+            <tr>
+               <% var p = Math.max(1, page-1); var n = Number(page)+1 %>
+                <td><a href="<%= p %>" style="padding: 10px 10px;">previous</a></td>
+                    <td><h3 style="padding: 0px 25px;"><%=page%></h3></td>
+                <td><a href="<%= n %>" style="padding: 10px 10px;">next</a></td>                
+            </tr>
+        </tbody>
+    </table>
+</body>
+</html>

@@ -1,0 +1,194 @@
+</html>
+<html lang="en">
+
+<head>
+
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>html</title>
+
+        <!-- CSS -->
+        <link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Roboto:400,100,300,500">
+        <link rel="stylesheet" type="text/css" href="/../assets/bootstrap/css/bootstrap.min.css">
+        <link rel="stylesheet" type="text/css" href="/../assets/bootstrap/css/bootstrap-theme.css">
+        <link rel="stylesheet" type="text/css" href="/../assets/font-awesome/css/font-awesome.min.css">
+        <link rel="stylesheet" type="text/css" href="/../assets/css/form-elements.css">
+        <link rel="stylesheet" type="text/css" href="/../assets/css/style.css">
+
+        <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+        <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+        <!--[if lt IE 9]>
+            <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+            <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+        <![endif]-->  
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>  
+
+    </head>
+
+
+<body>
+
+<nav class="navbar navbar-default">
+  <div class="container-fluid">
+    <!-- Brand and toggle get grouped for better mobile display -->
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+    </div>
+
+    <!-- Collect the nav links, forms, and other content for toggling -->
+    <div class="collapse navbar-collapse">
+        <ul class="nav navbar-nav navbar-left">
+            <li class="active"><a href="/home">home <span class="sr-only">(current)</span></a></li>
+        </ul>
+      <ul class="nav navbar-nav navbar-right">
+       
+      <form class="navbar-form navbar-left">
+        <div class="form-group">
+          <input type="text" class="form-control" placeholder="Search">
+        </div>
+      </form>
+      <ul class="nav navbar-nav navbar-right">
+
+                <% if(typeof req != 'undefined'){ %>
+                    <% if (!req.session.user) { %>
+                        
+                            <a class="navbar-brand" href="/register">register</a>
+
+                            <a class="navbar-brand" href="/login">login</a>
+
+                <% } else { %>               
+                            <li class="dropdown navbar-nav">
+                                <a class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false" >
+                                    <%= req.session.user.name %> <span class="caret"></span>
+                                </a>
+
+                                <ul class="dropdown-menu" role="menu">                                
+
+                                        <li>
+                                            <% if(!(typeof req.session.hasPortfolio == 'undefined')){%>
+                                                <% if(req.session.hasPortfolio == true){ %>
+                                                    <%= console.log('defined true')%>
+                                                    <a href="/portfolio">My Portfolio</a>
+                                                <% }else{ %>
+                                                    <%= console.log('defined false')%>
+                                                    <a href="/create-portfolio">Create Portfolio</a>
+                                                <% } %>
+                                            <% } else { %>
+                                                    <%= console.log('undefined')%>
+                                                    <a href="/create-portfolio">Create Portfolio</a>
+                                            <% } %>
+
+                                        </li>
+                                    
+                                        <li>
+                                            <a href="/edit-info">
+                                                My Info
+                                            </a>
+                                        </li>
+
+                                    <li>
+                                        <a href="/logout">
+                                            Logout
+                                        </a>
+
+                                    </li>
+
+                                </ul>
+                            </li>
+            
+                <% } %>
+            <% }else{ %>
+                    <div class="navbar-header  pull-right">
+                        <a class="navbar-brand" href="/register">register</a>
+                    </div>
+                    <div class="navbar-header  pull-right">
+                        <a class="navbar-brand" href="/login">login</a>
+                    </div>
+            <% } %>        
+      </ul>
+    </div><!-- /.navbar-collapse -->
+  </div><!-- /.container-fluid -->
+</nav>
+    <h1>Edit Work</h1>
+    <hr>
+      
+      
+      <!-- edit form column -->
+      <div class="col-md-9 personal-info">
+
+        <h3>Work info</h3>
+        
+        <form method="POST" action="/works/<%= req.params.id %>/edit" class="form-horizontal" role="form">
+          <div class="container">
+            
+            <div class="form-group">
+              <label class="col-lg-3 control-label">Title:</label>
+              <div class="col-lg-8">
+                <input class="form-control" 
+               id="title" name="title" type="text" value="<%= currentWork.title %>" required autofocus>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label class="col-lg-3 control-label">Description:</label>
+              <div class="col-lg-8">
+                <input class="form-control" 
+               id="description" name="description" type="text" value="<%= currentWork.description %>" autofocus>
+              </div>
+            </div>
+            
+            <div class="form-group">
+              <label class="col-lg-3 control-label">Link:</label>
+              <div class="col-md-6">
+                  <input class="form-control" id="link" name="link" type="text" value="<%=  currentWork.link %>" autofocus>
+              </div>
+            </div>
+            
+            <div class="form-group">
+                      <div class="text-center">
+                          <h6>Choose photo(s)...</h6>  
+                          <input type="file" id="pictures" name="pictures" class="form-control">
+                      </div>
+                  </div>
+            
+            <div class="form-group">
+              <div class="col-md-8">
+                <button type="submit" class="btn btn-primary">
+                                      Save Changes
+                </button>
+                <span></span>
+                <a href="/home">Cancel</a>
+              </div>
+            </div>
+          
+          </div>  
+        </form>
+        <div class=".col-md-6">
+          <ul class="list-group">
+              <% for(var i=0; i<currentWork.images.length; i++){%>
+
+              <li class="list-group-item">
+
+                  <img src="data:image/png;base64, <%= currentWork.images[i].data.toString('base64') %>" width=300 height=225/>
+                  <a href = "/works/<%=currentWork.id%>/images/<%=currentWork.images[i].id%>/remove">x</a>
+                  <a></a>
+
+              </li>
+
+              <% } %>
+          </ul>
+
+      </div>
+    </div>
+
+    <hr>
+</body>
+
+</html>

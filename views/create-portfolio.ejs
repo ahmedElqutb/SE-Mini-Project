@@ -1,0 +1,80 @@
+<%- include('header.ejs') %>
+
+    <form method="POST" action="/create-portfolio" class="form-horizontal" role="form"> 
+        <div class="col-md-3">
+            <div class="text-center">
+                <img src="//placehold.it/100" class="avatar img-circle" alt="avatar">
+                <h6>Choose photo...</h6>  
+                <input type="file" id="picture" name="picture" class="form-control">
+            </div>
+        </div>
+    
+    <div class="container">
+    <div class="row">
+        <div class=".col-md-6 col-md-offset-3">
+        
+          <div class="form-group">
+            <label class="col-lg-3 control-label">Name:</label>
+            <div class="col-lg-8">
+              <input class="form-control" 
+             id="name" name="name" type="text" required autofocus>
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="col-lg-3 control-label">Abstract:</label>
+            <div class="col-md-6">
+                <input class="form-control" id="abstract" name="abstract" type="text" autofocus>
+            </div>
+          </div>
+          <hr>
+          <div>
+                <h3>First Work!</h3>
+                <div class="form-group">
+                    <label class="col-lg-3 control-label">Title:</label>
+                    <div class="col-md-6">
+                        <input class="form-control" id="title" name="title" type="text" required autofocus>
+                    </div>
+                </div>
+                
+                <div class="form-group">
+                    <label class="col-lg-3 control-label">Description:</label>
+                    <div class="col-md-6">
+                        <input class="form-control" id="description" name="description" type="text" autofocus>
+                    </div>
+                </div>
+                
+                <div class="form-group">
+                    <label class="col-lg-3 control-label">Link:</label>
+                    <div class="col-md-6">
+                        <input class="form-control" id="link" name="link" type="text" autofocus>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="text-center">
+                        <img src="//placehold.it/100" class="avatar img-circle" alt="avatar">
+                        <h6>Choose photo(s)...</h6>  
+                        <input type="file" id="pictures" name="pictures" class="form-control" multiple>
+                    </div>
+                </div>
+          </div>
+          </div>
+
+          <div class="form-group">
+            <label class="col-md-3 control-label"></label>
+            <div class="col-md-8">
+              <button type="submit" class="btn btn-primary">
+                                    Create Portfolio!
+                                </button>
+              <span></span>
+              <a class="" href="/home">Cancel</a>
+            </div>
+          </div>
+        
+
+        </div>
+    </div>
+    </div>
+    </form>
+
+
+</html>

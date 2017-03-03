@@ -1,0 +1,15 @@
+<%- include('header.ejs')%>
+
+    <% if(!(typeof newUser == 'undefined')) { %>
+        <div class="row">
+            <div class="col-md-9 personal-info">
+                <div class="alert alert-info alert-dismissable">
+                    <a class="panel-close close" data-dismiss="alert">×</a> 
+                    <i class="fa fa-coffee"></i>
+                    <strong>Successfully Registered!<% delete newUser %></strong>
+                </div>
+            </div>
+        </div>
+    <% } %>
+
+</html>

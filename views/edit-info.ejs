@@ -1,0 +1,57 @@
+<%- include('header.ejs') %>
+
+    <div class="container">
+    <h1 align="left">Edit Profile</h1>
+    <hr>
+    <div class="row">
+      <!-- left column -->
+      
+      
+      <!-- edit form column -->
+      <div class="col-md-9 personal-info">
+        <div class="alert alert-info alert-dismissable">
+          <a class="panel-close close" data-dismiss="alert">×</a> 
+          <i class="fa fa-coffee"></i>
+          <strong>changes are permanent but can change again any time</strong>
+        </div>
+        <h3>Personal info</h3>
+        
+        <form method="POST" action="/edit-info" class="form-horizontal" role="form">
+          <div class="form-group">
+            <label class="col-lg-3 control-label">Name:</label>
+            <div class="col-lg-8">
+              <input class="form-control" 
+             id="name" name="name" type="text" value="<%= req.session.user.name %>" required autofocus>
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="col-lg-3 control-label">Username:</label>
+            <div class="col-lg-8">
+              <input class="form-control" 
+             id="username" name="username" type="text" value="<%= req.session.user.username %>" required autofocus>
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="col-lg-3 control-label">Birthdate:</label>
+            <div class="col-md-6">
+                <input class="form-control" id="birthdate" name="birthdate" type="date" value="<%=  req.session.user.birthdate.toISOString().substring(0, 10) %>" required autofocus>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label class="col-md-3 control-label"></label>
+            <div class="col-md-8">
+              <button type="submit" class="btn btn-primary">
+                                    Save Changes
+                                </button>
+              <span></span>
+              <a class="" href="/home">Cancel</a>
+            </div>
+          </div>
+        </form>
+      </div>
+  </div>
+</div>
+<hr>
+
+</html>

@@ -1,0 +1,54 @@
+<%- include('header.ejs')%>
+
+    <div class="row">
+        <% if (!(typeof req.session.message == 'undefined')){ %>
+            <div class=".col-md-6 personal-info">
+                <div class="alert alert-info alert-dismissable">
+                    <a class="panel-close close" data-dismiss="alert">×</a> 
+                    <i class="fa fa-coffee"></i>
+                    <strong><%= req.session.message%><% delete req.session.message %></strong>
+                </div>
+            </div>
+        <% } %>
+    </div>
+
+    <div class="row">
+        
+
+        <div class="cotainer">
+            <div class="row">
+                <div class=".col-md-6 col-md-offset-3">
+                    <div>
+                        <h3 align="left">Name: <%= work.title %></h3>
+                    </div>
+                    <hr>
+                    <div>
+                        <h3 align="left">Description: <%= work.description %></h3>
+                    </div>
+                    <hr>
+                    <a href="https://<%=work.link%>">View Website!</a>
+                    <hr>
+                    <div class=".col-md-6">
+                        <ul class="list-group">
+
+                            <% for(var i=0; i<work.images.length; i++){%>
+
+                            <li class="list-group-item">
+
+                                <img src="data:image/png;base64, <%= work.images[i].data.toString('base64') %>" width=300 height=225/>
+                
+                                
+                            </li>
+
+                            <% } %>
+                        </ul>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+
+</html>
